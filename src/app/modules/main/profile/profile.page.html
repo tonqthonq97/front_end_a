@@ -1,0 +1,91 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content class="padding-top" color="content">
+    <ion-grid class="profile" *ngIf="parent$ | async as parent">
+        <ion-row color="" class="profile__user">
+            <ion-col size="12">
+                <div class="profile__img-box ion-padding-top">
+                    <ion-avatar>
+                        <img class="profile__img" [src]="parent.image" imageLoader type="person" alt="" />
+                    </ion-avatar>
+                    <!-- <img class="profile__img" src="assets/images/profile.png" /> -->
+                    <p class="profile__name">{{ parent.full_name }}</p>
+                    <p class="profile__relationship ion-padding-bottom">保護者</p>
+                </div>
+            </ion-col>
+
+            <ion-col
+                *ngFor="let student of parent.students; let i = index"
+                [size]="checkLastStudentSize(i, parent.students.length)"
+                class="profile__children-box "
+                [ngClass]="{'profile__last-student':i===parent.students.length-1 && i%2===0}"
+            >
+                <ion-icon name="person"></ion-icon>
+                <p class="profile__child">{{ student.name }}</p>
+                <p class="profile__class">{{ student.class_name }}</p>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>メール</p>
+                        <p (click)="onSendMail(parent.email)">
+                            {{ parent.email }}
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>電話番号</p>
+                        <p (click)="onCall(parent.phone)">
+                            {{ parent.phone }}
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>住所</p>
+                        <p>
+                            {{ parent.address }}
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>パスワードを変更します</p>
+                    </div>
+                    <ion-button color="success" [routerLink]="['change-password']">変更</ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div style="width: 100%">
+                        <ion-button (click)="onLogout()" expand="block" color="primary" size="large"
+                            >ログアウト</ion-button
+                        >
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

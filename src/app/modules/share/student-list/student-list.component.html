@@ -1,0 +1,41 @@
+<ion-grid *ngIf="!isLoading">
+    <ion-row class="student" *ngFor="let student of students$ | async">
+        <ion-col size="3.5">
+            <!-- <app-img-loading></app-img-loading> -->
+            <ion-avatar>
+                <img class="student__img " alt="" imageLoader type="person" [src]="student.image" />
+            </ion-avatar>
+        </ion-col>
+        <ion-col size="8.5">
+            <div class="student__box">
+                <div class="student__info">
+                    <div class="student__icon-box">
+                        <ion-icon name="person"></ion-icon>
+                    </div>
+                    <div class="student__name-box">
+                        <p class="student__name ion-no-padding ion-no-margin ion-text-uppercase">
+                            {{ student.name }}
+                        </p>
+                        <p class="student__class ion-text-uppercase">
+                            {{ student.class_name }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <ion-button color="success" class="student__btn" (click)="onChildClick(student.id)">
+                    乗車連絡
+                </ion-button>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="isLoading">
+    <ion-row>
+        <ion-col class="ion-padding-top ion-text-center">
+            <app-small-spinner></app-small-spinner>
+        </ion-col>
+    </ion-row>
+</ion-grid>

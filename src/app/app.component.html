@@ -1,0 +1,9 @@
+<ion-app>
+    <ion-router-outlet> </ion-router-outlet>
+    <!-- <ion-grid class="spinner no-padding" *ngIf="isLoading">
+        <app-spinner></app-spinner>
+    </ion-grid> -->
+    <ion-grid class="alert no-padding" *ngIf="!!error" @showState>
+        <app-alert [message]="error" (close)="onCloseAlert()"></app-alert>
+    </ion-grid>
+</ion-app>

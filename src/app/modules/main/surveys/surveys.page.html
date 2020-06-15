@@ -1,0 +1,74 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content>
+    <ion-grid class="survey card" *ngIf="!isLoading">
+        <ion-row>
+            <ion-col size="12">
+                <p class="survey__title">
+                    学校からのアンケートが{{(surveys$ | async)[1].survey_not_done.length}}件あります。
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="surveys$ | async as surveys">
+            <ion-col size="12" *ngFor="let item of surveys[1].survey_not_done; let i = index" class="survey__col">
+                <div [ngClass]="['card__box ', checkType(item.type)]">
+                    <div class="card__left-border"></div>
+                    <div class="card__detail">
+                        <div class="card__img-box">
+                            <img class="card__img" src="assets/icon/survey.png" alt="" imageLoader />
+                        </div>
+                        <div class="card__text">
+                            <p class="card__name">
+                                {{ item.name }}
+                            </p>
+                            <ion-button class="card__btn" expand="block" (click)="onViewDetail(item.id)">
+                                すぐにやる
+                            </ion-button>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+
+            <ion-col size="12" *ngIf="surveys[1].survey_not_done.length===0" class="survey__col">
+                <p class="ion-no-margin ion-margin-horizontal"><i>データが見つかりません。</i></p>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <p class="survey__title">過去のアンケート</p>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="surveys$ | async as surveys">
+            <ion-col size="12" *ngFor="let item of surveys[0].survey_done">
+                <div class="card__box">
+                    <div class="card__left-border"></div>
+                    <div class="card__detail">
+                        <div class="card__img-box">
+                            <img class="card__img" src="assets/icon/survey.png" alt="" imageLoader />
+                        </div>
+
+                        <div class="card__text">
+                            <p class="card__name">
+                                {{ item.name }}
+                            </p>
+                            <ion-button class="card__btn" expand="block">
+                                すぐにやる
+                            </ion-button>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size="12" *ngIf="surveys[0].survey_done.length===0" class="survey__col">
+                <p class="ion-no-margin ion-margin-horizontal"><i>データが見つかりません。</i></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="isLoading">
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

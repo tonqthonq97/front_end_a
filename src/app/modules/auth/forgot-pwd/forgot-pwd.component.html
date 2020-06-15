@@ -1,0 +1,64 @@
+<ion-header translucent>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/auth']">
+                <ion-icon name="arrow-back" slot="icon-only" class="header__back-btn"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>パスワードを忘れ</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content force-overflow="false" class="content">
+    <ion-grid class="auth">
+        <ion-row class="auth__brand">
+            <ion-col size="12" class="ion-text-center">
+                <ion-icon name="school" class="auth__logo"></ion-icon>
+            </ion-col>
+            <!-- <ion-col class="ion-text-center">
+                <p>Easy School</p>
+            </ion-col> -->
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" class="ion-text-center">
+                <h2 class="ion-no-margin">パスワードの検索</h2>
+            </ion-col>
+            <ion-col size="12">
+                <form class="auth__form" #authForm="ngForm" (ngSubmit)="onForgetPassword(authForm)">
+                    <p>メールアドレスを入力してください。</p>
+                    <div class="form-group">
+                        <input
+                            required
+                            type="text"
+                            placeholder="メール"
+                            ngModel="admin1@gmail.com"
+                            name="email"
+                            required
+                            minlength="7"
+                            #email="ngModel"
+                        />
+                        <div class="auth__input-icon">
+                            <ion-icon name="mail" color="success"></ion-icon>
+                        </div>
+                    </div>
+                    <p *ngIf="email.invalid && email.touched" class="custom-form__invalid auth__invalid">
+                        *メールアドレスは正しくありません。
+                    </p>
+
+                    <div class="form-group">
+                        <ion-button
+                            type="submit"
+                            color="primary"
+                            expand="block"
+                            size="large"
+                            class="ion-no-margin auth__btn"
+                            [disabled]="authForm.invalid"
+                        >
+                            送信
+                        </ion-button>
+                    </div>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

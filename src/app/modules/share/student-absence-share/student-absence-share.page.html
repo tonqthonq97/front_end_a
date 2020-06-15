@@ -1,0 +1,40 @@
+<ion-content>
+    <ion-grid class="student-absence">
+        <ion-row>
+            <ion-col *ngIf="!isLoading && (absenceRp$|async)?.length!==0">
+                <ion-list class="ion-no-padding">
+                    <ion-item *ngFor="let report of absenceRp$|async" class="ion-margin-top">
+                        <div class="student-absence__box">
+                            <div class="student-absence__label" appDropdown>
+                                <ion-label>
+                                    <p><span class="student-absence__title">開始日:</span> {{report.start_date}}</p>
+                                    <p><span class="student-absence__title">終了日:</span> {{report.end_date}}</p>
+                                </ion-label>
+                                <img
+                                    [src]="report.accept?'/assets/icon/success.png':'/assets/icon/more.png'"
+                                    alt=""
+                                    imageLoader
+                                    class="student-absence__img"
+                                />
+                            </div>
+                            <div class="student-absence__content">
+                                {{report.reason}}
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <ion-col *ngIf="!isLoading && (absenceRp$|async)?.length===0">
+                <p>データが見つかりません。</p>
+            </ion-col>
+            <ion-col *ngIf="isLoading" class="ion-text-center">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+            <!-- <ion-col size="12">
+                <ion-button class="fixed-btn" type="button" (click)="onAddNew()">
+                    <ion-icon slot="icon-only" name="add"></ion-icon>
+                </ion-button>
+            </ion-col> -->
+        </ion-row>
+    </ion-grid>
+</ion-content>

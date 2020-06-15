@@ -1,0 +1,38 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row class="bus ion-padding-top" *ngIf="!isLoading">
+            <ion-col size="12" *ngFor="let bus of buses$ | async" class="bus__col">
+                <div class="bus__box" [routerLink]="bus.Id" routerDirection="root">
+                    <div class="bus__icon-box">
+                        <ion-thumbnail slot="start">
+                            <ion-img src="assets/icon/bus-gps.png"></ion-img>
+                        </ion-thumbnail>
+                    </div>
+                    <div class="bus__info">
+                        <div class="bus__name">
+                            <ion-icon name="flag"></ion-icon>
+                            <span class="">{{ bus.Plate | titlecase }}</span>
+                        </div>
+                        <div class="bus__num">
+                            <ion-icon name="locate"></ion-icon>
+                            <div class="bus__plate">
+                                <span>{{ bus.ActualPlate | uppercase }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size="12" *ngIf="(buses$ | async)?.length===0" class="bus__col">
+                <p>データが見つかりません。</p>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="isLoading">
+            <ion-col class="ion-text-center">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

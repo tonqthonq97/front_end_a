@@ -1,0 +1,20 @@
+ion-button.fixed-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    --border-radius: 50%;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    --background: linear-gradient(to bottom right, #46f58e, #4fb078);
+    --box-shadow: 0 4px 11px 1px #afafaf;
+    --opacity: 1;
+
+    &.ios {
+        right: 30px;
+        bottom: 100px;
+    }
+    &:hover {
+        --background: linear-gradient(to bottom right, #2ff782, #44c97c);
+    }
+}

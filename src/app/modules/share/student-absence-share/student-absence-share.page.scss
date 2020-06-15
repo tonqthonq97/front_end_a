@@ -1,0 +1,43 @@
+ion-header {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.student-absence {
+    p {
+        color: var(--black) !important;
+    }
+
+    &__img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        display: block;
+    }
+
+    &__title {
+        font-weight: 500;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &__label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    &__content {
+        display: none;
+        animation: fade 0.2s ease-out forwards;
+        margin-bottom: 5px;
+
+        &.show {
+            display: block !important;
+            opacity: 1;
+        }
+    }
+}

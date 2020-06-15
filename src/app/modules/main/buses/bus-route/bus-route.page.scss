@@ -1,0 +1,83 @@
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-btn {
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 8px;
+    top: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+ion-icon {
+    font-size: 3rem;
+    padding: 6px 6px 0px;
+    cursor: pointer;
+}
+
+.bus {
+    background: var(--grey-medium);
+    color: white;
+
+    width: 100%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    // align-items: center;
+    left: 0px;
+    bottom: 0px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    // visibility: hidden;
+    // opacity: 0;
+    transform: translateY(100%);
+    transition: 0.2s;
+    // animation: slideUp 0.2s;
+
+    &.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    p {
+        margin: 0;
+    }
+
+    &__icon-box {
+        ion-icon {
+            font-size: 2rem;
+        }
+        margin-right: 10px;
+    }
+
+    &__name {
+        display: block;
+        width: 100%;
+    }
+
+    &__detail {
+        padding: 0px 30px;
+        display: flex;
+        align-items: center;
+
+        &.border-bottom {
+            border-bottom: 1px dashed white;
+        }
+    }
+
+    &__name {
+        margin-bottom: -8px;
+        font-weight: 700;
+    }
+
+    &__label {
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,31 @@
+<ion-header class="header " [ngClass]="{ shadowOff: shadowOff }" translucent no-border>
+    <ion-toolbar class="flex">
+        <ion-buttons slot="start" class="header__back-btn-box" [ngClass]="{ show: backBtn }">
+            <ion-button (click)="redirectBack()">
+                <ion-icon
+                    [name]="dismissModal ? 'close' : 'arrow-back'"
+                    slot="icon-only"
+                    class="header__back-btn"
+                ></ion-icon>
+            </ion-button>
+            <!-- <ion-back-button [defaultHref]="defaultHref" icon="add"></ion-back-button> -->
+            <!-- <ion-back-button [defaultHref]="defaultHref" *ngIf="backBtn"></ion-back-button> -->
+        </ion-buttons>
+
+        <ion-title class="header__title">
+            {{ title || '' }}
+        </ion-title>
+        <ion-buttons slot="end" (click)="onBellClick()">
+            <ion-button class="bell">
+                <ion-badge
+                    class="bell__badge"
+                    color="danger"
+                    *ngIf="notificationAmount != 0"
+                    [ngClass]="{ android: isAndroid }"
+                    >{{ notificationAmount }}</ion-badge
+                >
+                <ion-icon class="bell__icon" slot="icon-only" name="notifications" color="primary"> </ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>

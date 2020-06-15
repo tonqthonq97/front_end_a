@@ -1,0 +1,46 @@
+.noti {
+    &__box {
+        &.active {
+            background: #e8fff1;
+        }
+        background: #fafafa;
+        align-items: center;
+        padding: 5px 15px;
+        margin: 0;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+    &__img {
+        display: block;
+        width: 35px;
+        height: 35px;
+        object-fit: contain;
+        display: block;
+        margin: auto;
+    }
+
+    &__details {
+        p {
+            margin: 0;
+        }
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin: 10px 0;
+    }
+
+    &__text {
+        font-size: 1.3rem;
+        color: var(--grey-medium);
+    }
+
+    &__time {
+        align-self: flex-start;
+        margin: 0;
+        font-size: 1.3rem;
+        color: var(--grey-medium);
+        text-align: right;
+    }
+}

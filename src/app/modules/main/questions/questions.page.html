@@ -1,0 +1,89 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content>
+    <ng-template appPlaceholder></ng-template>
+
+    <ion-grid class="question custom-form no-padding">
+        <ion-row class="no-bottom question__search-box">
+            <ion-col size="12">
+                <app-searchbar></app-searchbar>
+            </ion-col>
+        </ion-row>
+        <ion-row class="question__list no-bottom">
+            <ion-col size="12" class="question__categories">
+                <ion-slides [options]="slideOpts" pager="false">
+                    <ion-slide>
+                        <div class="question__category" [class.active]="currentActiveCategoryId === -1"
+                            (click)="onCategoryClick(-1)">
+                            <p>すべて</p>
+                        </div>
+                    </ion-slide>
+                    <ion-slide *ngFor="let category of categories$ | async">
+                        <div class="question__category" [class.active]="currentActiveCategoryId === category.id"
+                            (click)="onCategoryClick(category.id)">
+                            <p>{{ category.name }}</p>
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+
+            <ion-col size="12" *ngIf=" !isLoading && (questions$ |async)?.length!==0">
+                <div class="custom-form__box">
+                    <ul>
+                        <li class="question__item"
+                            *ngFor="let question of questions$ |async as questions; let i = index">
+                            <div class="question__box">
+                                <div class="question__question" appDropdown>
+                                    <p class="question__question-text">
+                                        {{ question.question }}
+                                    </p>
+                                    <ion-icon name="arrow-dropright" class="question__arrow"></ion-icon>
+                                </div>
+                                <div class="question__answer">
+                                    <div class="question__author-info">
+                                        <ion-avatar>
+                                            <img class="question__img" [src]="question.answered_image" alt=""
+                                                imageLoader type="person" />
+                                        </ion-avatar>
+                                        <div class="question__detail">
+                                            <p class="question__author">{{ question.answered_by }}</p>
+                                            <p>{{ question.created }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="question__text">
+                                        <pre>
+                                            {{ question.answer }}
+
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ion-infinite-scroll threshold="0px" (ionInfinite)="loadMoreData($event)" position="bottom"
+                        [disabled]="disableScroll">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                        </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </div>
+            </ion-col>
+
+            <ion-col size="12" *ngIf=" !isLoading && (questions$| async)?.length===0">
+                <div class="custom-form__box">
+                    <ul>
+                        <li class="question__item">データが見つかりません。</li>
+                    </ul>
+                </div>
+            </ion-col>
+
+            <ion-col size="12">
+                <ion-button class="fixed-btn " type="button" (click)="onAddNew()" [ngClass]="{ios:isIos}">
+                    <ion-icon slot="icon-only" name="add"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="12" *ngIf="isLoading" class="ion-text-center " style="display: block; padding-top: 30px;">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

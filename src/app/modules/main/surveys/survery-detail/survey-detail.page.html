@@ -1,0 +1,83 @@
+<app-custom-header [title]="title" [backUrl]="backUrl"></app-custom-header>
+
+<ion-content>
+    <ion-grid *ngIf="!isLoading">
+        <ion-row *ngIf="questions && questions.length !== 0">
+            <ion-col size="12">
+                <p class="survey-question__progress-text">進行中</p>
+            </ion-col>
+            <ion-col size="12">
+                <ion-progress-bar
+                    [value]="currentQuestion ? (currentQuestion.index + 1) / questionsLength : 0"
+                ></ion-progress-bar>
+            </ion-col>
+            <ion-col size="12">
+                <ion-list class="survey-question ion-no-margin">
+                    <ion-list-header class="survey-question__question "
+                        >{{currentQuestion.require?'*':''}} 質問 {{ currentQuestion?.index + 1 }}: {{
+                        currentQuestion?.question }}</ion-list-header
+                    >
+
+                    <!-- Type1 -->
+                    <ng-container *ngIf="currentQuestion?.type === surveyQuestionType.CHECKBOX">
+                        <ion-item
+                            class="survey-question__check-box active"
+                            lines="none"
+                            *ngFor="let option of currentQuestion.options"
+                        >
+                            <ion-checkbox
+                                color="primary"
+                                slot="end"
+                                [(ngModel)]="option.isChecked"
+                                (ionChange)="checkDisableButton()"
+                            ></ion-checkbox>
+                            <ion-label>{{ option.val }}</ion-label>
+                        </ion-item>
+                    </ng-container>
+
+                    <!-- Type2 -->
+                    <ng-container *ngIf="currentQuestion?.type === surveyQuestionType.RADIO">
+                        <form #radioForm="ngForm">
+                            <ion-radio-group ngModel name="radioItem" (ionChange)="checkDisableButton()">
+                                <ion-item *ngFor="let option of currentQuestion.options; let i = index">
+                                    <ion-label>{{ option.val }}</ion-label>
+                                    <ion-radio slot="end" [value]="i"></ion-radio>
+                                </ion-item>
+                            </ion-radio-group>
+                        </form>
+                    </ng-container>
+
+                    <!-- Type3 -->
+                    <ion-item *ngIf="currentQuestion?.type === surveyQuestionType.TEXT">
+                        <ion-textarea
+                            [(ngModel)]="textareaAnswer"
+                            placeholder="メッセージを入力してください。"
+                            (ionChange)="checkDisableButton()"
+                        ></ion-textarea>
+                    </ion-item>
+
+                    <ion-button
+                        expand="block"
+                        size="large"
+                        (click)="onNext(currentQuestion?.index)"
+                        class="survey-question__next-btn"
+                        [disabled]="isDisabled"
+                        >次へ</ion-button
+                    >
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!questions || questions.length == 0">
+            <ion-col>
+                <p>No questions available</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="isLoading">
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

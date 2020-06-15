@@ -1,0 +1,15 @@
+<app-custom-header [title]="title" [backUrl]="backUrl"></app-custom-header>
+
+<ion-content>
+    <iframe
+        *ngIf="busFrameUrl"
+        [src]="busFrameUrl"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        webkitallowfullscreen
+        mozallowfullscreen
+        allowfullscreen
+    >
+    </iframe>
+</ion-content>

@@ -1,0 +1,71 @@
+.student {
+    padding: 10px 12px;
+    margin: 25px 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+    align-items: center;
+    background: white;
+
+    ion-avatar,
+    img {
+        width: 75px;
+        height: 75px;
+    }
+
+    &__img {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__info {
+        display: flex;
+    }
+
+    &__teacher {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        color: var(--grey);
+        text-transform: capitalize;
+    }
+
+    &__name {
+        font-weight: 500;
+        font-size: 1.5rem;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+
+    &__class {
+        font-weight: 1.3rem !important;
+        color: var(--grey);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    &__class {
+        padding: 0;
+        margin: 0;
+    }
+
+    &__btn {
+        display: block;
+        --border-radius: 10px;
+        --box-shadow: var(--shadow);
+        font-size: 1.5rem;
+        font-weight: 400;
+        height: 3.5rem;
+    }
+    ion-icon {
+        color: var(--primary);
+        margin-right: 4px;
+        font-size: 1.7rem;
+    }
+}

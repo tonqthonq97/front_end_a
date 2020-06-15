@@ -1,0 +1,92 @@
+@import 'src/global.scss';
+
+.auth {
+    margin: 5px 15px;
+    // position: relative;
+    .form-group:not(:last-child) {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    &__logo {
+        color: var(--primary);
+        font-size: 7rem !important;
+    }
+
+    &__brand {
+        margin-top: 6rem;
+        p {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--black);
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    &__form {
+        margin-top: 3rem;
+    }
+    input[type='text'],
+    input[type='password'],
+    input[type='textarea'] {
+        padding: 20px 15px 20px 60px;
+        border: 1px solid var(--grey-light);
+        border-radius: 10px;
+        width: 100%;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input[type='text']:focus,
+    input[type='password']:focus,
+    input[type='textarea']:focus {
+        border-color: var(--primary);
+    }
+
+    &__input-icon {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+    }
+
+    ion-icon {
+        font-size: 2.5rem;
+    }
+
+    &__btn {
+        margin-top: 50px;
+    }
+
+    &__text {
+        color: var(--grey);
+        font-size: 1.4rem;
+    }
+
+    &__qr {
+        margin-top: 3rem;
+        color: var(--grey-medium);
+
+        img {
+            margin-top: 2rem;
+        }
+    }
+
+    &__invalid {
+        margin: -10px 0 20px;
+    }
+
+    &__forgot-pwd {
+        color: var(--primary);
+        text-align: right;
+        border-bottom: 1px solid var(--primary);
+        padding-bottom: 5px;
+        transition: 0.2s;
+        outline: none;
+        &:hover {
+            color: #6be09c;
+            border-bottom: 1px solid #6be09c;
+        }
+    }
+}

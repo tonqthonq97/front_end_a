@@ -1,0 +1,86 @@
+<app-custom-header [title]="title" [backUrl]="backUrl"></app-custom-header>
+
+<ion-content class="padding-top" color="content">
+    <ion-grid class="profile" *ngIf="student$ | async as student">
+        <ion-row color="">
+            <ion-col size="12" class="profile__img-box ">
+                <div class="profile__img-box ion-padding-top">
+                    <ion-avatar>
+                        <img class="profile__img" [src]="student.image" imageLoader type="person" alt="" />
+                    </ion-avatar>
+                    <p class="profile__name">{{ student.name }}</p>
+                </div>
+            </ion-col>
+
+            <ion-col size="6" class="profile__sub-box">
+                <ion-icon name="flag"></ion-icon>
+                <div class="ion-text-start">
+                    <p class="profile__feature">クラス</p>
+                    <p class="profile__text ion-text-uppercase">
+                        {{ student.class_name }}
+                    </p>
+                </div>
+            </ion-col>
+            <ion-col size="6" class="profile__sub-box">
+                <ion-icon name="bus"></ion-icon>
+                <div class="ion-text-start">
+                    <p class="profile__feature">{{ student.bus_name }}</p>
+                    <p class="profile__text ion-text-uppercase ">
+                        {{ student.label}}
+                    </p>
+                </div>
+            </ion-col>
+            <ion-col size="6" class="profile__sub-box">
+                <ion-icon name="person"></ion-icon>
+                <div class="ion-text-start">
+                    <p class="profile__feature">年齢</p>
+                    <p class="profile__text">{{ student.age }} 歳</p>
+                </div>
+            </ion-col>
+            <!-- <ion-col size="6" class="profile__sub-box">
+                <ion-icon name="clipboard"></ion-icon>
+                <div class="ion-text-start">
+                    <p class="profile__feature">身長　重体</p>
+                    <p class="profile__text">{{ student.height }}センチ - {{ student.weight }}キロ</p>
+                </div>
+            </ion-col> -->
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>スクール</p>
+                        <p class="ion-text-capitalize">
+                            {{ student.school_name }}
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>先生</p>
+                        <p class="ion-text-capitalize">
+                            {{ student.teacher_name }}
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>不在履歴レポート</p>
+                    </div>
+                    <ion-button color="success" (click)="redirectToAbsencePage()">表示</ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

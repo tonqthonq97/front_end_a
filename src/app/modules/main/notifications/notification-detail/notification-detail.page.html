@@ -1,0 +1,36 @@
+<app-custom-header [title]="title" [backUrl]="backUrl"></app-custom-header>
+
+<ion-content color="content">
+    <ion-grid class="no-padding" class="noti-detail">
+        <ion-row *ngIf="notification$ | async as notification">
+            <ion-col size="12" class="ion-text-center">
+                <img
+                    [src]="
+                        notification.notification_type == 1 ? 'assets/icon/notification.png' : 'assets/icon/survey.svg'
+                    "
+                    alt=""
+                    class="noti-detail__img"
+                    imageLoader
+                />
+            </ion-col>
+            <ion-col size="12">
+                <h3 class="noti-detail__title">{{ notification.title }}</h3>
+            </ion-col>
+            <ion-col size="12">
+                <p class="noti-detail__time">{{ notification.created | truncate: 10:false }}</p>
+            </ion-col>
+            <ion-col size="12">
+                <!-- <div [innerHTML]="notification.body" class="noti-detail__content"></div> -->
+                <!-- <p class="noti-detail__content">{{ notification.body }}</p> -->
+                <pre class="noti-detail__content">{{ notification.body }}</pre>
+            </ion-col>
+            <ion-col size="12" *ngIf="notification.notification_type === 2">
+                <ion-button
+                    type="button"
+                    (click)="goToSurvey(notification.survey_id,notification.survey_type ,notification.start_date, notification.end_date)"
+                    >表示</ion-button
+                >
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

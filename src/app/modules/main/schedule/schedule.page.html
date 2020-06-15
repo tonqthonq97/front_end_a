@@ -1,0 +1,63 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content class="schedule">
+    <ion-row>
+        <ion-col class="schedule__datepicker">
+            <div class="schedule_arrow">
+                <ion-icon name="arrow-round-back" (click)="onMonthChange('prev')" class="arrow-prev"></ion-icon>
+            </div>
+            <ion-slides [options]="monthSlideOpts" #monthSlides class="schedule__month-slides">
+                <ion-slide class="schedule__month-slide" *ngFor="let month of listOfMonths">
+                    <div>{{ listOfMonths[selectedMonth] }}/{{ selectedYear }}</div>
+                </ion-slide>
+            </ion-slides>
+            <div class="schedule_arrow">
+                <ion-icon name="arrow-round-forward" (click)="onMonthChange('next')" class="arrow-next"></ion-icon>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row class="schedule__week">
+        <ion-slides class="schedule__day-slides" [options]="daySlideOpts" ionSlideDidChange="onSlideChange($event)"
+            #daySlides>
+            <ion-slide *ngFor="let day of daysInMonth" (click)="onSelectDay(day.date)"
+                [ngClass]="{ active: day.date == selectedDate }">
+                <div class="schedule__detail">
+                    <p class="schedule__date">{{ day.date }}</p>
+                    <p class="schedule__day">{{ day.day | titlecase }}</p>
+                </div>
+            </ion-slide>
+        </ion-slides>
+    </ion-row>
+    <ion-grid *ngIf="!loading" class="schedule__box">
+        <ion-row class="schedule__subject active no-bottom"
+            *ngFor="let schedule of schedules$ | async as schedules; let i = index" @fadeInState>
+            <ion-col class="schedule__line">
+                <div class="schedule__label-box">
+                    <div class="schedule__circle-icon"></div>
+                    <ion-label class="schedule__label">{{schedule.group_name}}</ion-label>
+                </div>
+                <ion-list>
+                    <div class="schedule__item" *ngFor="let subject of schedule.schedule" lines="none" slot="start">
+                        <!-- <ion-icon name="add"></ion-icon> -->
+                        <ion-img class="schedule__img" src="assets/icon/books.png"></ion-img>
+                        <pre>{{decodeEntities(subject.subject)}}</pre>
+                    </div>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="loading">
+        <ion-row>
+            <app-small-spinner></app-small-spinner>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="!loading && (schedules$ | async)?.length === 0" class="schedule__box">
+        <ion-row>
+            <ion-col>
+                <p>当日の予定がございません。</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

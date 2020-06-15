@@ -1,0 +1,12 @@
+.bus-name {
+    opacity: 0;
+    transition: 0.2s;
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+.bus-option {
+    font-size: 1.5rem;
+}

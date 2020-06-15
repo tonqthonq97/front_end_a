@@ -1,0 +1,78 @@
+<app-custom-header [title]="title" [backUrl]="backUrl"></app-custom-header>
+
+<ion-content color="content">
+    <ng-template appPlaceholder></ng-template>
+    <ion-grid class="custom-form no-padding" *ngIf="!isContactCreated">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <!-- <ion-row>
+                        <ion-col size="12">
+                            <div class="custom-form__box">
+                                <div class="custom-form__to">
+                                    <h4>宛先:</h4>
+                                    <ion-icon
+                                        name="add-circle-outline"
+                                        color="primary"
+                                        (click)="onAddReceiver()"
+                                    ></ion-icon>
+                                </div>
+                                <div class="custom-form__receiver">
+                                    <p *ngFor="let email of emailList" class="custom-form__email">
+                                        <span>
+                                            {{ email }}
+                                        </span>
+                                        <ion-icon
+                                            name="close-circle-outline"
+                                            color="white"
+                                            (click)="onDeleteEmail(email)"
+                                        ></ion-icon>
+                                    </p>
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row> -->
+            <ion-row>
+                <ion-col size="12">
+                    <div class="custom-form__box flex ion-justify-content-between">
+                        <div class="custom-form__item">
+                            <ion-item>
+                                <ion-label>カテゴリー一覧</ion-label>
+                                <ion-select okText="完了" cancelText="キャンセル" (ionChange)="selectCategory($event)">
+                                    <ion-select-option
+                                        *ngFor="let category of categories$ | async"
+                                        [value]="category.id"
+                                        >{{ category.name }}</ion-select-option
+                                    >
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <div class="custom-form__box">
+                        <h4>問い合わせ</h4>
+                        <ion-textarea
+                            rows="7"
+                            [(ngModel)]="message"
+                            name="message"
+                            required
+                            placeholder="メッセージを入力してください。"
+                        ></ion-textarea>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="no-bottom">
+                <ion-col size="12">
+                    <div class="custom-form__box">
+                        <ion-button type="submit" color="success" [disabled]="form.invalid || !categorySelected" expand
+                            >送信</ion-button
+                        >
+                    </div>
+                </ion-col>
+            </ion-row>
+        </form>
+    </ion-grid>
+</ion-content>

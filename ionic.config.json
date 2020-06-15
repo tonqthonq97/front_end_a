@@ -1,0 +1,8 @@
+{
+  "name": "school_project",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,58 @@
+<app-custom-header [title]="title" [backBtn]="backBtn"></app-custom-header>
+<ion-content>
+    <ion-grid>
+        <ion-row
+            class="ion-align-items-start ion-justify-content-between ion-margin-top"
+            *ngIf="amountUrgentSurveys!==0"
+            [ngClass]="{hide:amountUrgentSurveys===0}"
+        >
+            <ion-col>
+                <p class="feature__text ion-no-margin">
+                    今日の通知
+                </p>
+            </ion-col>
+
+            <ion-col class="ion-text-right">
+                <a class="feature__link" (click)="goToSurveys()">全て表示</a>
+            </ion-col>
+        </ion-row>
+
+        <ion-row
+            style="padding:5px 0 5px 17px"
+            *ngIf="amountUrgentSurveys!==0"
+            [ngClass]="{hide:amountUrgentSurveys===0}"
+        >
+            <ion-col class="ion-no-padding">
+                <app-survey-slide [surveys]="urgentSurveys"></app-survey-slide>
+            </ion-col>
+            <!-- <ion-col class="ion-no-padding" *ngIf="isLoading" style="text-align:center;height: 120px;" @fadeInState>
+                <app-small-spinner></app-small-spinner>
+            </ion-col> -->
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <ion-text>
+                    <p class="feature__text">学校へ緊急連絡</p>
+                </ion-text>
+            </ion-col>
+            <ion-col size="6" *ngFor="let card of cards">
+                <ion-card class="feature-box ion-no-margin ion-no-padding" (click)="goTo(card.route)">
+                    <ion-card-header>
+                        <img class="feature-box__img" [src]="card.imgUrl" alt="" imageLoader />
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <h3 class="feature-box__title">{{ card.title }}</h3>
+                        <div class="feature-box__span-box" *ngIf="card.title==='アンケート' && amountNormalSurveys">
+                            <span>
+                                {{amountNormalSurveys}}
+                            </span>
+                        </div>
+                        <p class="feature-box__text">({{ card.text }})</p>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

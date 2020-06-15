@@ -1,0 +1,129 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content>
+    <ion-grid class="contact ">
+        <ion-row>
+            <ion-col size="12">
+                <div class="contact__info">
+                    <div>
+                        <p class="contact__title">ホーチミン日本人学校</p>
+                    </div>
+                </div>
+
+                <div class="contact__info">
+                    <div>
+                        <div class="contact__title">
+                            <ion-icon name="call" color="success"></ion-icon>
+                            <p>
+                                TEL :
+                            </p>
+                        </div>
+                        <p (click)="onCall(phoneNumber)">
+                            {{phoneNumber}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact__info">
+                    <div>
+                        <div class="contact__title">
+                            <ion-icon name="mail" color="success"></ion-icon>
+                            <p>
+                                Mail (メール) :
+                            </p>
+                        </div>
+                        <p (click)="onSendMail(mailAddress)">
+                            {{mailAddress}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact__info">
+                    <div>
+                        <div class="contact__title">
+                            <ion-icon name="map" color="success"></ion-icon>
+                            <p>
+                                Địa chỉ（住所）:
+                            </p>
+                        </div>
+                        <p>
+                            Saigon South, Block M9, Tan Phu St., Dist. 7, Ho Chi Minh City
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <!-- <ion-row>
+            <ion-col size="12">
+                <app-searchbar></app-searchbar>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12" *ngIf="!isLoading">
+                <ion-list class="contact__list">
+                    <ng-container *ngIf="isDynamicCreated">
+                        <ion-item
+                            *ngFor="let contact of contacts$ | async"
+                            (click)="onItemClick(contact.id, contact.email)"
+                        >
+                            <ion-label class="contact__box">
+                                <ion-avatar>
+                                    <img class="contact__img" [src]="contact.image" alt="" imageLoader type="person" />
+                                </ion-avatar>
+                                <div class="contact__info">
+                                    <p class="contact__name">{{ contact.fullname }}</p>
+                                    <p class="contact__sub">{{ contact.position | titlecase }}</p>
+                                </div>
+                            </ion-label>
+                        </ion-item>
+                    </ng-container>
+
+                    <ng-container *ngIf="!isDynamicCreated">
+                        <ion-item-sliding *ngFor="let contact of contacts$ | async" class="contact__slide">
+                            <ion-item class="contact__item" (click)="onItemClick(contact.id, contact.email)">
+                                <ion-label class="contact__box">
+                                    <ion-avatar>
+                                        <img
+                                            class="contact__img"
+                                            [src]="contact.image"
+                                            alt=""
+                                            imageLoader
+                                            type="person"
+                                        />
+                                    </ion-avatar>
+                                    <div class="contact__info">
+                                        <p class="contact__name">{{ contact.fullname }}</p>
+                                        <p class="contact__sub">{{ contact.position | titlecase }}</p>
+                                    </div>
+                                </ion-label>
+                            </ion-item>
+                            <ion-item-options side="end" class="contact__options">
+                                <ion-item-option (click)="onCall(contact.phone)" color="primary" expandable="false">
+                                    <ion-icon name="call" slot="icon-only"></ion-icon>
+                                </ion-item-option>
+                                <ion-item-option (click)="onSendSMS(contact.phone)" color="warning" expandable="false">
+                                    <ion-icon name="chatboxes" slot="icon-only"></ion-icon>
+                                </ion-item-option>
+                            </ion-item-options>
+                        </ion-item-sliding>
+                    </ng-container>
+                </ion-list>
+
+                <ion-infinite-scroll
+                    threshold="0px"
+                    (ionInfinite)="loadMoreData($event)"
+                    position="bottom"
+                    [disabled]="disableScroll"
+                >
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+            </ion-col>
+            <ion-col *ngIf="isLoading" class="ion-text-center">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+        </ion-row> -->
+    </ion-grid>
+</ion-content>

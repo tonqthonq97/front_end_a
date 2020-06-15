@@ -1,0 +1,69 @@
+<app-custom-header [title]="title" [backUrl]="backUrl"></app-custom-header>
+
+<ion-content class="padding-top" color="content">
+    <ion-grid class="profile" *ngIf="contact$ | async as contact">
+        <ion-row color="">
+            <ion-col size="12">
+                <div class="profile__img-box ion-padding-top">
+                    <ion-avatar>
+                        <img class="profile__img" [src]="contact.image" alt="" imageLoader type="person" />
+                    </ion-avatar>
+                    <p class="profile__name">{{ contact.fullname }}</p>
+                    <p class="profile__relationship">{{ contact.position | titlecase }}</p>
+                </div>
+            </ion-col>
+            <!-- <ion-col size="12" class="flex ion-justify-content-center">
+                <ion-button color="white" class="profile__edit-btn" type="button">
+                    <ion-icon slot="start" name="star"></ion-icon>
+                    Left Icon
+                </ion-button>
+            </ion-col> -->
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>メール</p>
+                        <p>
+                            {{ contact.email }}
+                        </p>
+                    </div>
+                    <div>
+                        <!-- <a [href]="'mailto:' + contact.email"><ion-icon name="mail" slot="icon-only"></ion-icon></a> -->
+                        <ion-icon name="mail" slot="icon-only" (click)="onSendMail(contact.email)"></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>電話番号</p>
+                        <p>
+                            {{ contact.phone }}
+                        </p>
+                    </div>
+                    <div>
+                        <ion-icon name="chatboxes" slot="icon-only" (click)="onSendSMS(contact.phone)"></ion-icon>
+                        <ion-icon name="call" slot="icon-only" (click)="onCall(contact.phone)"></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="no-bottom">
+            <ion-col size="12">
+                <div class="profile__info">
+                    <div>
+                        <p>住所</p>
+                        <p>
+                            {{ contact.address }}
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

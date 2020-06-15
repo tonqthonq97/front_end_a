@@ -1,0 +1,8 @@
+<ion-searchbar
+    #searchbar
+    placeholder="質問、質問のカテゴリーを検索"
+    [ngClass]="{ android: isAndroid }"
+    (ionClear)="onClear($event)"
+    class="searchbar"
+    (search)="onSubmit($event)"
+></ion-searchbar>

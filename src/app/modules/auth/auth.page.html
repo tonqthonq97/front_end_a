@@ -1,0 +1,81 @@
+<ion-content force-overflow="false">
+    <ion-grid class="auth">
+        <ion-row class="auth__brand">
+            <ion-col size="12" class="ion-text-center">
+                <ion-icon name="school" class="auth__logo"></ion-icon>
+            </ion-col>
+            <ion-col class="ion-text-center">
+                <p>Easy School</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <form class="auth__form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                    <div class="form-group">
+                        <input
+                            required
+                            type="text"
+                            placeholder="メール"
+                            ngModel=""
+                            name="email"
+                            required
+                            email
+                            #email="ngModel"
+                        />
+                        <div class="auth__input-icon">
+                            <ion-icon name="mail" color="success"></ion-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="email.invalid && email.touched" class="custom-form__invalid auth__invalid">
+                        *メールアドレスは正しくありません。
+                    </div>
+
+                    <div class="form-group">
+                        <input
+                            name="password"
+                            autocomplete="off"
+                            type="password"
+                            placeholder="パスワード"
+                            ngModel=""
+                            required
+                            #password="ngModel"
+                            minlength="7"
+                        />
+                        <div class="auth__input-icon">
+                            <ion-icon name="unlock" color="success"></ion-icon>
+                        </div>
+                    </div>
+                    <p *ngIf="password.invalid && password.touched" class="custom-form__invalid">
+                        *パスワードは正しくありません。
+                    </p>
+
+                    <div class="form-group ion-text-right">
+                        <ion-label
+                            class="ion-margin-start auth__text"
+                            class="auth__forgot-pwd"
+                            [routerLink]="['forgot-pwd']"
+                            >ログイン情報を保存しますか？
+                        </ion-label>
+                    </div>
+                    <div class="form-group">
+                        <ion-button
+                            type="submit"
+                            color="primary"
+                            expand="block"
+                            size="large"
+                            class="ion-no-margin auth__btn"
+                            [disabled]="authForm.invalid"
+                        >
+                            ログイン
+                        </ion-button>
+                    </div>
+                </form>
+            </ion-col>
+        </ion-row>
+        <!-- <ion-row class="auth__qr ion-text-center">
+            <ion-col size="12">
+                <img src="assets/images/qr-code.png" alt="" />
+            </ion-col>
+        </ion-row> -->
+    </ion-grid>
+</ion-content>

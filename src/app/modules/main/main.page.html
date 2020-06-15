@@ -1,0 +1,9 @@
+<!-- <ion-tabs color="danger" (ionTabsWillChange)="transition($event)"></ion-tabs> -->
+<ion-tabs color="danger" class="tabs" slot="bottom">
+    <ion-tab-bar slot="bottom" class="footer">
+        <ion-tab-button [tab]="item.tab" *ngFor="let item of footerItems" [routerLink]="item.route">
+            <ion-icon [name]="item.imgUrl"></ion-icon>
+            <ion-label>{{ item.title }}</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>

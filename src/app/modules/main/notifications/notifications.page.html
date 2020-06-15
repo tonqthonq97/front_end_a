@@ -1,0 +1,55 @@
+<app-custom-header [title]="title"></app-custom-header>
+
+<ion-content class="padding-top">
+    <ion-grid class="noti no-padding" *ngIf="(notifications$|async)?.length!==0 && !isLoading">
+        <ion-row
+            color=""
+            class="noti__box"
+            *ngFor="let noti of notifications$ | async"
+            [ngClass]="{ active: noti.read === 0 }"
+            (click)="onClick(noti.id)"
+        >
+            <ion-col>
+                <img
+                    [src]="noti.survey_id?'assets/icon/contract.png':'assets/icon/email.png'"
+                    alt=""
+                    class="noti__img"
+                    imageLoader
+                />
+            </ion-col>
+
+            <ion-col size="7" class="noti__details ">
+                <p class="noti__title">{{ noti.title }}</p>
+                <p class="noti__text">{{ noti.body | truncate: 40 }}</p>
+            </ion-col>
+            <ion-col size="2" class="noti__time ">
+                <p class="noti__time">{{getTime(noti.created)}}</p>
+            </ion-col>
+        </ion-row>
+
+        <ion-infinite-scroll
+            threshold="0px"
+            (ionInfinite)="loadMoreData($event)"
+            position="bottom"
+            [disabled]="disableScroll"
+        >
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-grid>
+
+    <ion-grid class="noti no-padding" *ngIf="(notifications$|async)?.length===0 && !isLoading">
+        <ion-row>
+            <ion-col>
+                <p>データが見つかりません。</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="noti no-padding" *ngIf="isLoading">
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <app-small-spinner></app-small-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

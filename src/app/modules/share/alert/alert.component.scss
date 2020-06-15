@@ -1,0 +1,32 @@
+.alert {
+    display: block;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    &__backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 50;
+    }
+
+    &__box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70vw;
+        padding: 16px;
+        border-radius: 10px;
+        z-index: 100;
+        background: white;
+        box-shadow: 0 2px 8px rbga(0, 0, 0, 0.26);
+    }
+
+    &__btn-box {
+        text-align: right;
+    }
+}

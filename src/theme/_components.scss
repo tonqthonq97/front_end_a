@@ -1,0 +1,136 @@
+ion-searchbar.searchbar {
+    --background: #ececec;
+
+    input.searchbar-input.sc-ion-searchbar-md {
+        box-shadow: none !important;
+        border-radius: 10px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    ion-icon.searchbar-search-icon {
+        top: 0px !important;
+    }
+
+    &.android {
+        ion-icon.searchbar-search-icon {
+            top: 7px !important;
+        }
+    }
+}
+
+ion-grid {
+    padding: var(--grid-padding);
+
+    &.no-padding {
+        padding: 0;
+    }
+}
+
+ion-row {
+    padding: 0 var(--row-side-padding);
+    margin-bottom: var(--row-bottom-margin);
+
+    &.no-bottom {
+        margin-bottom: 0;
+    }
+
+    &.no-padding {
+        padding: 0;
+    }
+}
+
+// app-surveys,
+// app-home,
+// app-students,
+// app-notifications,
+// app-students,
+// app-absence,
+// app-buses,
+// app-contacts,
+// app-questions,
+// app-pickup,
+// app-schedule {
+//     animation: slide 0.3s 1 forwards;
+// }
+
+.ion-page {
+    // animation: fadeSlideIn 0.3s 1 forwards;
+}
+
+app-buses,
+app-home,
+app-profile,
+app-absence,
+app-contacts,
+app-notifications,
+app-pickup,
+app-questions {
+    // .ion-page {
+    // display: inline !important;
+    // position: static !important;
+    // }
+}
+
+.ion-page {
+    // display: inline !important;
+    // position: static !important;
+}
+// ion-backdrop {
+//     animation: backdropIn 0.3s 1 forwards;
+// }
+
+// ion-toast {
+// animation: slideDown 0.3s 1 forwards;
+// }
+
+.picker-toolbar {
+    justify-content: space-between !important;
+}
+
+.picker-wrapper {
+    // animation: slideUp 0.3s;
+    // animation: fade 0.3s 1 forwards;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.bell {
+    position: relative;
+
+    &__badge {
+        position: absolute;
+        right: 0px;
+        bottom: 7px;
+        font-size: 1.1rem;
+
+        &.android {
+            right: 5px;
+        }
+    }
+}
+
+ion-alert {
+    .alert-wrapper {
+        width: 85% !important;
+        max-width: 85% !important;
+    }
+}

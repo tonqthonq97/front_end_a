@@ -1,0 +1,30 @@
+<ion-slides pager="true" [options]="slideOpts" class="ion-margin-top" class="survey">
+    <ng-container *ngIf="surveys.length !== 0">
+        <ion-slide *ngFor="let survey of surveys" @fadeInState (click)="goToSurvey(survey.id)">
+            <ion-row class="align-items-start survey__box">
+                <ion-col size="2">
+                    <ion-avatar class="">
+                        <img class="survey__img" src="/assets/icon/icon-home.png" alt="" imageLoader />
+                    </ion-avatar>
+                </ion-col>
+                <ion-col offset="1" size="9" class="ion-no-margin ion-text-start">
+                    <ion-text class="survey__textbox">
+                        <h3>
+                            {{ survey.name }}
+                        </h3>
+                        <p class="survey__time">{{ survey.end_date|truncate:10:false }}</p>
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+    </ng-container>
+    <!-- <ng-container *ngIf="surveys.length === 0">
+        <ion-slide>
+            <ion-row class=" survey__box empty">
+                <ion-col>
+                    <p>No surveys available</p>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+    </ng-container> -->
+</ion-slides>
